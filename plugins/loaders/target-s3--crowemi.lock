@@ -1,0 +1,283 @@
+{
+  "plugin_type": "loaders",
+  "name": "target-s3",
+  "namespace": "target_s3",
+  "variant": "crowemi",
+  "label": "S3 (Multi Format)",
+  "docs": "https://hub.meltano.com/loaders/target-s3--crowemi",
+  "repo": "https://github.com/crowemi/target-s3",
+  "pip_url": "git+https://github.com/crowemi/target-s3.git",
+  "executable": "target-s3",
+  "description": "AWS S3 (Multi Format)",
+  "logo_url": "https://hub.meltano.com/assets/logos/loaders/s3.png",
+  "capabilities": [
+    "about",
+    "schema-flattening",
+    "stream-maps"
+  ],
+  "settings_group_validation": [
+    [
+      "cloud_provider.aws.aws_bucket",
+      "cloud_provider.aws.aws_region",
+      "cloud_provider.cloud_provider_type",
+      "format.format_type"
+    ]
+  ],
+  "settings": [
+    {
+      "name": "append_date_to_filename",
+      "kind": "boolean",
+      "value": true,
+      "label": "Append Date To Filename",
+      "description": "A flag to append the date to the key filename."
+    },
+    {
+      "name": "append_date_to_filename_grain",
+      "kind": "options",
+      "value": "day",
+      "label": "Append Date To Filename Grain",
+      "description": "The grain of the date to append to the filename.",
+      "options": [
+        {
+          "label": "Year",
+          "value": "year"
+        },
+        {
+          "label": "Month",
+          "value": "month"
+        },
+        {
+          "label": "Day",
+          "value": "day"
+        },
+        {
+          "label": "Hour",
+          "value": "hour"
+        },
+        {
+          "label": "Minute",
+          "value": "minute"
+        },
+        {
+          "label": "Second",
+          "value": "second"
+        },
+        {
+          "label": "Microsecond",
+          "value": "microsecond"
+        }
+      ]
+    },
+    {
+      "name": "append_date_to_prefix",
+      "kind": "boolean",
+      "value": true,
+      "label": "Append Date To Prefix",
+      "description": "A flag to append the date to the key prefix."
+    },
+    {
+      "name": "append_date_to_prefix_grain",
+      "kind": "options",
+      "value": "day",
+      "label": "Append Date To Prefix Grain",
+      "description": "The grain of the date to append to the prefix.",
+      "options": [
+        {
+          "label": "Year",
+          "value": "year"
+        },
+        {
+          "label": "Month",
+          "value": "month"
+        },
+        {
+          "label": "Day",
+          "value": "day"
+        },
+        {
+          "label": "Hour",
+          "value": "hour"
+        },
+        {
+          "label": "Minute",
+          "value": "minute"
+        },
+        {
+          "label": "Second",
+          "value": "second"
+        },
+        {
+          "label": "Microsecond",
+          "value": "microsecond"
+        }
+      ]
+    },
+    {
+      "name": "cloud_provider.aws.aws_access_key_id",
+      "kind": "string",
+      "label": "Cloud Provider AWS AWS Access Key ID",
+      "description": "Your AWS access key ID.",
+      "sensitive": true
+    },
+    {
+      "name": "cloud_provider.aws.aws_bucket",
+      "kind": "string",
+      "label": "Cloud Provider AWS AWS Bucket",
+      "description": "Your AWS access key ID.",
+      "sensitive": true
+    },
+    {
+      "name": "cloud_provider.aws.aws_endpoint_override",
+      "kind": "string",
+      "label": "Cloud Provider AWS AWS Endpoint Override",
+      "description": "The AWS endpoint url to use for testing purposes.",
+      "sensitive": true
+    },
+    {
+      "name": "cloud_provider.aws.aws_profile_name",
+      "kind": "string",
+      "label": "Cloud Provider AWS AWS Profile Name",
+      "description": "Your AWS profile name to optionally use for auth.",
+      "sensitive": true
+    },
+    {
+      "name": "cloud_provider.aws.aws_region",
+      "kind": "string",
+      "label": "Cloud Provider AWS AWS Region",
+      "description": "Your AWS region.",
+      "sensitive": true
+    },
+    {
+      "name": "cloud_provider.aws.aws_secret_access_key",
+      "kind": "string",
+      "label": "Cloud Provider AWS AWS Secret Access Key",
+      "description": "Your AWS secret access key.",
+      "sensitive": true
+    },
+    {
+      "name": "cloud_provider.aws.aws_session_token",
+      "kind": "string",
+      "label": "Cloud Provider AWS AWS Session Token",
+      "sensitive": true
+    },
+    {
+      "name": "cloud_provider.cloud_provider_type",
+      "kind": "string",
+      "value": "aws",
+      "label": "Cloud Provider Cloud Provider Type",
+      "description": "The cloud provider type to use.",
+      "options": [
+        {
+          "label": "AWS",
+          "value": "aws"
+        }
+      ],
+      "sensitive": true
+    },
+    {
+      "name": "flatten_records",
+      "kind": "boolean",
+      "label": "Flatten Records",
+      "description": "A flag indictating to flatten records."
+    },
+    {
+      "name": "flattening_enabled",
+      "kind": "boolean",
+      "label": "Flattening Enabled",
+      "description": "'True' to enable schema flattening and automatically expand nested properties."
+    },
+    {
+      "name": "flattening_max_depth",
+      "kind": "integer",
+      "label": "Flattening Max Depth",
+      "description": "The max depth to flatten schemas."
+    },
+    {
+      "name": "format.format_parquet.validate",
+      "kind": "boolean",
+      "value": false,
+      "label": "Format Format Parquet Validate",
+      "description": "This flag determines whether the data types of incoming data elements should be validated. When set `True`, a schema is created from the first record and all subsequent records that don't match that data type are cast. Default False."
+    },
+    {
+      "name": "format.format_type",
+      "kind": "options",
+      "label": "Format Format Type",
+      "description": "The format type of the output files.",
+      "options": [
+        {
+          "label": "Parquet",
+          "value": "parquet"
+        },
+        {
+          "label": "Json",
+          "value": "json"
+        },
+        {
+          "label": "JSON Lines",
+          "value": "jsonl"
+        }
+      ]
+    },
+    {
+      "name": "include_process_date",
+      "kind": "boolean",
+      "value": false,
+      "label": "Include Process Date",
+      "description": "A flag indicating whether to append _process_date to record."
+    },
+    {
+      "name": "partition_name_enabled",
+      "kind": "boolean",
+      "value": false,
+      "label": "Partition Name Enabled",
+      "description": "A flag (only works if append_date_to_prefix is enabled) to have partitioning name formatted e.g. 'year=2023/month=01/day=01'."
+    },
+    {
+      "name": "prefix",
+      "kind": "string",
+      "label": "Prefix",
+      "description": "The prefix for the key."
+    },
+    {
+      "name": "stream_map_config",
+      "kind": "object",
+      "label": "Stream Map Config",
+      "description": "User-defined config values to be used within map expressions."
+    },
+    {
+      "name": "stream_maps",
+      "kind": "object",
+      "label": "Stream Maps",
+      "description": "Config object for stream maps capability. For more information check out [Stream Maps](https://sdk.meltano.com/en/latest/stream_maps.html)."
+    },
+    {
+      "name": "stream_name_path_override",
+      "kind": "string",
+      "label": "Stream Name Path Override",
+      "description": "The S3 key stream name override.",
+      "sensitive": true
+    },
+    {
+      "name": "use_raw_stream_name",
+      "kind": "boolean",
+      "value": false,
+      "label": "Use Raw Stream Name",
+      "description": "A flag to force the filename to be identical to the stream name"
+    },
+    {
+      "name": "max_batch_age",
+      "kind": "integer",
+      "value": 5,
+      "label": "Maximum Batch Age",
+      "description": "Maximum time in minutes between state messages when records are streamed in"
+    },
+    {
+      "name": "max_batch_size",
+      "kind": "integer",
+      "value": 10000,
+      "label": "Maximum Batch Size",
+      "description": "Maximum size of batches when records are streamed in"
+    }
+  ]
+}

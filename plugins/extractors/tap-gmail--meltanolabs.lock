@@ -1,0 +1,90 @@
+{
+  "plugin_type": "extractors",
+  "name": "tap-gmail",
+  "namespace": "tap_gmail",
+  "variant": "meltanolabs",
+  "label": "GMail",
+  "docs": "https://hub.meltano.com/extractors/tap-gmail--meltanolabs",
+  "repo": "https://github.com/MeltanoLabs/tap-gmail",
+  "pip_url": "meltanolabs-tap-gmail",
+  "description": "Email service provided by Google",
+  "logo_url": "https://hub.meltano.com/assets/logos/extractors/gmail.png",
+  "capabilities": [
+    "about",
+    "catalog",
+    "discover",
+    "schema-flattening",
+    "state",
+    "stream-maps"
+  ],
+  "settings_group_validation": [
+    []
+  ],
+  "settings": [
+    {
+      "name": "flattening_enabled",
+      "kind": "boolean",
+      "label": "Flattening Enabled",
+      "description": "'True' to enable schema flattening and automatically expand nested properties."
+    },
+    {
+      "name": "flattening_max_depth",
+      "kind": "integer",
+      "label": "Flattening Max Depth",
+      "description": "The max depth to flatten schemas."
+    },
+    {
+      "name": "messages.include_spam_trash",
+      "kind": "boolean",
+      "value": false,
+      "label": "Messages Include Spam Trash",
+      "description": "Include messages from SPAM and TRASH in the results."
+    },
+    {
+      "name": "messages.q",
+      "kind": "string",
+      "label": "Messages Q",
+      "description": "Only return messages matching the specified query. Supports the same query format as the Gmail search box. For example, \"from:someuser@example.com rfc822msgid:<somemsgid@example.com> is:unread\". Parameter cannot be used when accessing the api using the gmail. Metadata scope. https://developers.google.com/gmail/api/reference/rest/v1/users.messages/list#query-parameters"
+    },
+    {
+      "name": "oauth_credentials.client_id",
+      "kind": "string",
+      "label": "OAuth Credentials Client ID",
+      "description": "Your google client_id",
+      "sensitive": true
+    },
+    {
+      "name": "oauth_credentials.client_secret",
+      "kind": "string",
+      "label": "OAuth Credentials Client Secret",
+      "description": "Your google client_secret",
+      "sensitive": true
+    },
+    {
+      "name": "oauth_credentials.refresh_token",
+      "kind": "string",
+      "label": "OAuth Credentials Refresh Token",
+      "description": "Your google refresh token",
+      "sensitive": true
+    },
+    {
+      "name": "stream_map_config",
+      "kind": "object",
+      "label": "Stream Map Config",
+      "description": "User-defined config values to be used within map expressions."
+    },
+    {
+      "name": "stream_maps",
+      "kind": "object",
+      "label": "Stream Maps",
+      "description": "Config object for stream maps capability. For more information check out [Stream Maps](https://sdk.meltano.com/en/latest/stream_maps.html)."
+    },
+    {
+      "name": "user_id",
+      "kind": "string",
+      "label": "User ID",
+      "description": "Your Gmail User ID",
+      "sensitive": true
+    }
+  ]
+}
